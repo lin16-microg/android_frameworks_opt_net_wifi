@@ -227,7 +227,8 @@ public class HalDeviceManager {
         //As of O and O-MR1, configureChip MUST BE after a startWifi
         //Pie changed this to allow dynamic configureChip
         //No O/O-MR1 HAL support that, so restart wifi HAL when we do that
-        if(android.os.SystemProperties.getInt("persist.sys.vndk", 28) < 28) {
+        if((android.os.SystemProperties.getInt("persist.sys.vndk", 28) < 28) ||
+           (android.os.SystemProperties.get("persist.sys.vndk") == "hi3650"))  {
             Log.e(TAG, "createStaIface: Stopping wifi");
             stopWifi();
             Log.e(TAG, "createStaIface: Starting wifi");
@@ -244,7 +245,8 @@ public class HalDeviceManager {
     public IWifiApIface createApIface(@Nullable InterfaceDestroyedListener destroyedListener,
             @Nullable Handler handler) {
         //cf createStaIface
-        if(android.os.SystemProperties.getInt("persist.sys.vndk", 28) < 28) {
+        if((android.os.SystemProperties.getInt("persist.sys.vndk", 28) < 28) ||
+           (android.os.SystemProperties.get("persist.sys.vndk") == "hi3650")) {
             Log.e(TAG, "createApIface: Stopping wifi");
             stopWifi();
             Log.e(TAG, "createApIface: Starting wifi");
