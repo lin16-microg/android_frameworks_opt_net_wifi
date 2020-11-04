@@ -702,8 +702,7 @@ public class WifiNative {
                 //To be perfectly clean, we should check what value createStaIface (would have) returned
                 //and use the same one.
                 //That's overly complicated, so let's assume this is wlan0 for the moment
-                if((android.os.SystemProperties.getInt("persist.sys.vndk", 28) < 28) ||
-                   (android.os.SystemProperties.get("persist.sys.vndk") == "hi3650")) {
+                if(android.os.SystemProperties.getInt("persist.sys.vndk", 28) < 28) {
                     ret = "wlan0";
                 }
 
